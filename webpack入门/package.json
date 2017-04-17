@@ -1,0 +1,21 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "del-cli dist -f",
+    "build": "webpack",
+    "execute": "node dist/bundle.js",
+    "start": "npm run build -s && npm run execute -s"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "del-cli": "^0.2.1",
+    "webpack": "^2.3.3"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}
