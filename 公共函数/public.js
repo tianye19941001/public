@@ -41,8 +41,8 @@ var ty_public = {
 		var exdate=new Date();
 		exdate.setDate(exdate.getDate()+expiredays);
 		document.cookie= c_name+ "=" + escape(value) + ((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
-	}
-	getCookies: function getCookie(c_name){
+	},
+	getCookies: function(c_name){
 		if (document.cookie.length>0){
 			c_start=document.cookie.indexOf(c_name + "=")
 			if (c_start!=-1){ 
