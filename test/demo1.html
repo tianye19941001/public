@@ -3,8 +3,178 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<style>
+		.callout{
+			position: absolute;top: 10px; left: 10px;
+			padding:10px;
+			background: #000;
+			border:1px solid red;
+			border-right: 0;
+			border-bottom: 0;
+			transform: rotate(45deg);
+		}
+		.san{
+			width: 0;
+		    height: 0;
+		    border-left: 50px solid transparent;
+		    border-right: 50px solid transparent;
+		    border-bottom: 100px solid red;
+		}
+		p{ width: 50px; hyphens: auto; }
+
+
+		.vrCard,.hotCard,.buildCard {
+		    padding-top: 40px;
+		    position: relative;
+		}
+		.vrCard:before,.hotCard:before,.buildCard:before{
+			content: '';
+		    position: absolute;
+		    text-align: center;
+		    background: url(http://cdn.leju.com/page_single/pc_live/assets/images/bSprite.png) no-repeat center top;
+		}
+		.vrCard:before{
+		    width: 24px;
+		    height: 24px;
+		    background-position: -100px -194px;
+		    top: 7px;
+		    left: 3px;
+		}
+
+		.hotCard:before{
+		    width: 22px;
+		    height: 25px;
+		    background-position: -92px 0;
+		    top: 7px;
+		    left: 3px;
+		}
+		.buildCard:before{
+		    width: 24px;
+		    height: 24px;
+		    background-position: -25px -169px;
+		    top: 7px;
+		    left: 3px;
+		}
+
+		.hotCard:after{
+			content: '热点';
+		}
+		.vrCard:after{
+			content: 'VR';
+		}
+		.buildCard:after{
+			content: '楼盘';
+		}
+		.hotCard:after,.vrCard:after,.buildCard:after {
+		    position: absolute;
+		    top: 0;
+		    left: 30px;
+		    height: 40px;
+		    line-height: 40px;
+		    font-size: 18px;
+		    font-family:'微软雅黑';
+		}
+
+	</style>
 </head>
 <body>
-	<p>您的昵称:<span>&lt;script&gt;alert('小楼');&lt;/script&gt;</span></p>
+	<div class="hotCard"></div>
+	<div class="vrCard"></div>
+	<div class="buildCard"></div>
+
+	<!-- <p>您的昵称您的昵称您的昵称您的昵称您,的昵称您的昵称您的昵称您的昵称您的昵称,您,的昵称您的昵称您的昵称您的昵称您的昵称您的昵称您的昵称您的昵称您的昵称您的昵称您的昵称您的昵称</span></p>
+	<div class="callout"></div>
+	<div class="san"></div>
+	<div class="time">
+		
+	</div> -->
+	<script>
+		function cout(a){
+			var b =a;
+			alert(a+b);
+		}
+		var c = cout(2);
+	// 		function timeControl(EndTime){
+	// 			this.Now = function(){
+	// 				var now = new Date();
+	// 				var hours = now.getHours();
+	// 				var minutes = now.getMinutes();
+	// 				var seconds = now.getSeconds();
+	// 				var timeNow = [hours,minutes,seconds];
+	// 				return timeNow;
+	// 			}
+	// 			this.deathTime = EndTime || this.now; 
+	// 		}
+	// 		timeOnly.prototype.setTime = function() {
+				
+	// 		};
+	// 		var MYTimeControl= new timeControl([2018,4,26,1,30]);
+
+	
+
+
+
+
+	// 	var fnTimeCountDown = function(d, o){
+	// 	var f = {
+	// 		zero: function(n){
+	// 			var n = parseInt(n, 10);
+	// 			if(n > 0){
+	// 				if(n <= 9){
+	// 					n = "0" + n;	
+	// 				}
+	// 				return String(n);
+	// 			}else{
+	// 				return "00";	
+	// 			}
+	// 		},
+	// 		dv: function(){
+	// 			d = d || Date.UTC(2050, 0, 1); 
+	// 			var future = new Date(d), now = new Date();
+	// 			var dur = Math.round((future.getTime() - now.getTime()) / 1000) + future.getTimezoneOffset() * 60, pms = {
+	// 				sec: "00",
+	// 				mini: "00",
+	// 				hour: "00",
+	// 				day: "00",
+	// 				month: "00",
+	// 				year: "0"
+	// 			};
+	// 			if(dur > 0){
+	// 				pms.sec = f.zero(dur % 60);
+	// 				pms.mini = Math.floor((dur / 60)) > 0? f.zero(Math.floor((dur / 60)) % 60) : "00";
+	// 				pms.hour = Math.floor((dur / 3600)) > 0? f.zero(Math.floor((dur / 3600)) % 24) : "00";
+	// 				pms.day = Math.floor((dur / 86400)) > 0? f.zero(Math.floor((dur / 86400)) % 30) : "00";
+					
+	// 				pms.month = Math.floor((dur / 2629744)) > 0? f.zero(Math.floor((dur / 2629744)) % 12) : "00";
+					
+	// 				pms.year = Math.floor((dur / 31556926)) > 0? Math.floor((dur / 31556926)) : "0";
+	// 			}
+	// 			return pms;
+	// 		},
+	// 		ui: function(){
+	// 			if(o.sec){
+	// 				o.sec.innerHTML = f.dv().sec;
+	// 			}
+	// 			if(o.mini){
+	// 				o.mini.innerHTML = f.dv().mini;
+	// 			}
+	// 			if(o.hour){
+	// 				o.hour.innerHTML = f.dv().hour;
+	// 			}
+	// 			if(o.day){
+	// 				o.day.innerHTML = f.dv().day;
+	// 			}
+	// 			if(o.month){
+	// 				o.month.innerHTML = f.dv().month;
+	// 			}
+	// 			if(o.year){
+	// 				o.year.innerHTML = f.dv().year;
+	// 			}
+	// 			setTimeout(f.ui, 1000);
+	// 		}
+	// 	};	
+	// 	f.ui();
+	// };
+	</script>
 </body>
 </html>

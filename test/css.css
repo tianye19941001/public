@@ -1,0 +1,51 @@
+.vrCard,.hotCard,.buildCard {
+    padding-top: 40px;
+    position: relative;
+}
+.vrCard:before,.hotCard:before,.buildCard:before{
+	content: '';
+    position: absolute;
+    text-align: center;
+    background: url(http://cdn.leju.com/page_single/pc_live/assets/images/bSprite.png) no-repeat center top;
+}
+.vrCard:before{
+    width: 24px;
+    height: 24px;
+    background-position: -100px -194px;
+    top: 7px;
+    left: 3px;
+}
+
+.hotCard:before{
+    width: 22px;
+    height: 25px;
+    background-position: -92px 0;
+    top: 7px;
+    left: 3px;
+}
+.buildCard:before{
+    width: 24px;
+    height: 24px;
+    background-position: -25px -169px;
+    top: 7px;
+    left: 3px;
+}
+
+.hotCard:after{
+	content: '热点';
+}
+.vrCard:after{
+	content: 'VR';
+}
+.buildCard:after{
+	content: '楼盘';
+}
+.hotCard:after,.vrCard:after,.buildCard:after {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    font-family:'微软雅黑';
+}
