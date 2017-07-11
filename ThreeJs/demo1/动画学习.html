@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="three.min.js"></script>
+	<script type="text/javascript" src="stats.js"></script>
+</head>
+<body>
+	<canvas id="mainCanvas" width="800px" height="600px"></canvas>
+	<script>
+		// 渲染器
+		function initRenderer(){
+			// FPS信息
+			stat = new Stats();
+		    stat.domElement.style.position = 'absolute';
+		    stat.domElement.style.left = '10px';
+		    stat.domElement.style.top = '10px';
+		    document.body.appendChild(stat.domElement);
+
+			renderer = new THREE.WebGLRenderer({
+				canvas: document.getElementById('mainCanvas')
+			})
+			renderer.setClearColor(0x000000);
+		}
+
+		// 场景
+		function initScene() {
+			scene = new THREE.Scene();
+		}
+
+		// 照相机
+		// 400px 300px的canvas 所以比例也是4 3
+		function initCamera() {
+			camera = new THREE.OrthographicCamera(-2, 2, 1.5, -1.5, 1, 10);
+			camera.position.set(4, -3, 5);
+			camera.up.x = 0;
+			camera.up.y = 1;
+			camera.up.z = 0;
+			camera.lookAt(new THREE.Vector3(0, 0, 0));
+		}
+		
+		//添加点光源
+		function initLight() {
+		 //   	var light = new THREE.PointLight(0xffffff, 2, 10);
+			// light.position.set(1.5,0, 2);
+			// scene.add(light);
+
+			var light = new THREE.AmbientLight(0xffffff);
+			scene.add(light);
+		}
+
+		function objQiu(){
+			//载入图片
+			var texture = THREE.ImageUtils.loadTexture('./3.jpg', {}, function() {
+			    renderer.render(scene, camera);
+			});
+
+			// 创建球
+			qiu = new THREE.Mesh(new THREE.SphereGeometry(1,40,40),
+	        	new THREE.MeshPhongMaterial({
+		            map: texture
+		        })
+			);
+			qiu.rotation.x = qiu.rotation.x + 0.4;
+			qiu.rotation.z = qiu.rotation.z - 0.4;
+			scene.add(qiu);
+		}
+		function render() {
+			stat.begin();
+			animate = requestAnimationFrame(render);
+			qiu.rotation.y = (qiu.rotation.y + 0.01) % (Math.PI * 2);
+			renderer.render(scene, camera);
+			stat.end();
+		}
+		function threeStart() {
+			initRenderer();
+			initCamera();
+			initScene();
+			initLight();
+			objQiu();
+			render();
+		} 
+		
+		window.onload = threeStart();
+		//渲染
+	</script>
+</body>
+</html>

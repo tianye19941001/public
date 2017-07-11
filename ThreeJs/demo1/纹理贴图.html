@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="three.min.js"></script>
+</head>
+<body>
+	<canvas id="mainCanvas" width="800px" height="600px"></canvas>
+	<script>
+		// 渲染器
+		var renderer = new THREE.WebGLRenderer({
+			canvas: document.getElementById('mainCanvas')
+		})
+		renderer.setClearColor(0x000000);
+
+		// 场景
+		var scene = new THREE.Scene();
+
+
+		// 照相机
+		// 400px 300px的canvas 所以比例也是4 3
+		var camera = new THREE.OrthographicCamera(-2, 2, 1.5, -1.5, 1, 10);
+		camera.position.set(4, -3, 5);
+		scene.add(camera);
+
+
+		//添加点光源
+       	var light = new THREE.PointLight(0xffffff, 2, 10);
+		light.position.set(1.5,0, 2);
+		scene.add(light);
+
+		//载入图片
+		var texture = THREE.ImageUtils.loadTexture('./0.png', {}, function() {
+		    renderer.render(scene, camera);
+		});
+
+		// 创建长方体
+		var cube = new THREE.Mesh(new THREE.CubeGeometry(1, 2, 3,2,2,3),
+        	new THREE.MeshLambertMaterial({
+	            map: texture
+	        })
+		);
+		// 创建球
+		var qiu = new THREE.Mesh(new THREE.SphereGeometry(1,40,40),
+        	new THREE.MeshPhongMaterial({
+	            map: texture
+	        })
+		);
+		
+		cube.position.set(-0.3,1.5,0.3)
+
+		scene.add(cube);
+		// scene.add(chang);
+		scene.add(qiu);
+
+
+
+		camera.lookAt(new THREE.Vector3(0, 0, 0));
+		//渲染
+		renderer.render(scene,camera);
+
+	</script>
+</body>
+</html>

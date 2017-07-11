@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="three.min.js"></script>
+</head>
+<body>
+	<canvas id="mainCanvas" width="400px" height="300px"></canvas>
+	<script>
+		// 渲染器
+		var renderer = new THREE.WebGLRenderer({
+			canvas: document.getElementById('mainCanvas')
+		})
+		renderer.setClearColor(0x000000);
+
+		// 场景
+		var scene = new THREE.Scene();
+
+		// 照相机
+		var camera = new THREE.PerspectiveCamera(45,4 / 3,1,1000);
+		camera.position.set(0,0,15);
+		scene.add(camera);
+
+		// 创建长方体
+		var cube = new THREE.Mesh(new THREE.CubeGeometry(1,2,3),
+			// 材质
+			new THREE.MeshBasicMaterial({
+	        	color: 0xff0000
+	        })
+		);
+		scene.add(cube);
+
+		//渲染
+		renderer.render(scene,camera);
+	</script>
+</body>
+</html>

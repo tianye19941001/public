@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="three.min.js"></script>
+</head>
+<body>
+	<canvas id="mainCanvas" width="800px" height="600px"></canvas>
+	<script>
+		// 渲染器
+		function initRenderer(){
+			renderer = new THREE.WebGLRenderer({
+				canvas: document.getElementById('mainCanvas')
+			})
+			renderer.setClearColor(0x000000);
+		}
+
+		// 场景
+		function initScene() {
+			scene = new THREE.Scene();
+		}
+
+		// 照相机
+		// 400px 300px的canvas 所以比例也是4 3
+		function initCamera() {
+			camera = new THREE.OrthographicCamera(-2, 2, 1.5, -1.5, 1, 10);
+			camera.position.set(4, -3, 5);
+			// camera.up.x = 0;
+			// camera.up.y = 1;
+			// camera.up.z = 0;
+			camera.lookAt(new THREE.Vector3(0, 0, 0));
+			// scene.add(camera);
+		}
+		
+		//添加点光源
+		function initLight() {
+		   	var light = new THREE.PointLight(0xffffff, 2, 10);
+			light.position.set(1.5,0, 2);
+			scene.add(light);
+		}
+
+		function objQiu(){
+			//载入图片
+			var texture = THREE.ImageUtils.loadTexture('./0.png', {}, function() {
+			    renderer.render(scene, camera);
+			});
+
+			// 创建球
+			qiu = new THREE.Mesh(new THREE.SphereGeometry(1,40,40),
+	        	new THREE.MeshPhongMaterial({
+		            map: texture
+		        })
+			);
+			scene.add(qiu);
+		}
+		function render() {
+			requestAnimationFrame(render);
+			qiu.rotation.x += 0.05;
+			qiu.rotation.y += 0.05;
+			qiu.rotation.y += 0.05;
+			renderer.render(scene, camera);
+		}
+		function threeStart() {
+			initRenderer();
+			initCamera();
+			initScene();
+			initLight();
+			objQiu();
+			render();
+		} 
+		
+		window.onload = threeStart();
+		//渲染
+	</script>
+</body>
+</html>

@@ -89,11 +89,30 @@
 		
 	</div> -->
 	<script>
-		function cout(a){
-			var b =a;
-			alert(a+b);
+		function T(name) {
+			this.Name = name;
+			var x = 5;
+			function privateFunc() { alert('in private method: do sometheing'); }                 　　
+				this.PublicFunc = function() {// 可以调用私有方法，访问私有成员变量。          　　
+				privateFunc();          　　
+				alert('x = ' + x);       
+				alert('in public method: do something else.');      
+			}  
 		}
-		var c = cout(2);
+
+		// function ttt(x) {
+		// 	var ty = x;
+		// 	function tIN(){
+		// 		alert(++ty) ;
+		// 	}
+		// 	return tIN;
+		// }
+		// var tt = new ttt(10)
+		// function cout(a){
+		// 	var b =a;
+		// 	alert(a+b);
+		// }
+		// var c = cout(2);
 	// 		function timeControl(EndTime){
 	// 			this.Now = function(){
 	// 				var now = new Date();
